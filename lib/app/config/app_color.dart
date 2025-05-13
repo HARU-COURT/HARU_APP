@@ -22,5 +22,5 @@ class AppColor {
   static Color primary2 = const Color(0xffFFE986);
   static Color primary3 = const Color(0xffFFE15A);
   static Color primary4 = const Color(0xffFFE15A);
-  static Color primary5 = const Color(0xffDADADA);
+  static Color primary5 = const Color(0xffFFC700);
 }

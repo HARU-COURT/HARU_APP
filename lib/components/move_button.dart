@@ -18,7 +18,7 @@ class MoveButton extends StatelessWidget {
           border: Border.all(color: AppColor.primary5, width: 1.0),
         ),
         child: Text(
-          "text",
+          text,
           style: AppTextStyles.btn1.copyWith(color: AppColor.primary5),
         ),
       ),

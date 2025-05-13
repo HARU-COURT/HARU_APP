@@ -51,7 +51,7 @@ class AppTextStyles {
     height: 1.4,
   );
   static TextStyle footnote = const TextStyle(
-    fontFamily: 'pretendard',
+    fontFamily: 'Pretendard',
     fontSize: 13,
     fontWeight: FontWeight.w400,
     height: 1.4,

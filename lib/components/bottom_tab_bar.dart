@@ -3,14 +3,14 @@ import 'package:harucourt/app/config/app_color.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:harucourt/app/config/app_text_styles.dart';
 
-class BottomTabbar extends StatefulWidget {
-  const BottomTabbar({super.key});
+class BottomTabBar extends StatefulWidget {
+  const BottomTabBar({super.key});
 
   @override
-  State<BottomTabbar> createState() => _BottomTabbarState();
+  State<BottomTabBar> createState() => _BottomTabBarState();
 }
 
-class _BottomTabbarState extends State<BottomTabbar> {
+class _BottomTabBarState extends State<BottomTabBar> {
   int _index = 0;
 
   @override

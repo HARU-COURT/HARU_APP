@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:harucourt/screens/manual.dart';
 import 'package:harucourt/screens/onboarding.dart';
 
 void main() {
@@ -12,9 +13,12 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      getPages: [GetPage(name: '/', page: () => OnboardingPage())],
+      getPages: [
+        GetPage(name: '/', page: () => OnboardingPage()),
+        GetPage(name: '/Manual', page: () => ManualPage()),
+      ],
       // 실행 시 내가 원하는 페이지로 이동
-      initialRoute: '',
+      initialRoute: '/Manual',
     );
   }
 }

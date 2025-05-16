@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:harucourt/app/config/app_color.dart';
 import 'package:harucourt/app/config/app_text_styles.dart';
 import 'package:harucourt/components/back_header.dart';
+import 'package:harucourt/components/move_button.dart';
+import 'package:harucourt/components/next_button.dart';
 
 class ManualPage extends StatefulWidget {
   const ManualPage({super.key});
@@ -63,6 +65,7 @@ class _ManualPageState extends State<ManualPage> {
                       ),
                     ),
                     SizedBox(height: MediaQuery.of(context).size.height * 0.08),
+                    Center(child: MoveButton(text: "바로 고민접수하기")),
                   ],
                 ),
               ),

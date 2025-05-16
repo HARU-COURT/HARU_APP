@@ -10,16 +10,19 @@ class MoveButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {},
-      child: Container(
-        padding: EdgeInsets.symmetric(vertical: 16, horizontal: 149),
-        decoration: BoxDecoration(
-          color: AppColor.primary1,
-          borderRadius: BorderRadius.circular(8),
-          border: Border.all(color: AppColor.primary5, width: 1.0),
-        ),
-        child: Text(
-          text,
-          style: AppTextStyles.btn1.copyWith(color: AppColor.primary5),
+      child: IntrinsicWidth(
+        child: Container(
+          padding: EdgeInsets.symmetric(vertical: 16, horizontal: 40),
+          decoration: BoxDecoration(
+            color: AppColor.primary1,
+            borderRadius: BorderRadius.circular(8),
+            border: Border.all(color: AppColor.primary5, width: 1.0),
+          ),
+          child: Text(
+            text,
+            style: AppTextStyles.btn1.copyWith(color: AppColor.primary5),
+            textAlign: TextAlign.center,
+          ),
         ),
       ),
     );

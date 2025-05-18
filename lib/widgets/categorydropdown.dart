@@ -72,7 +72,7 @@ class _CategoryDropdownState extends State<CategoryDropdown> {
                           alignment: Alignment.centerLeft,
                           child: Text(
                             item,
-                            style: AppTextStyles.body2.copyWith(
+                            style: AppTextStyles.body3.copyWith(
                               color: AppColor.black,
                             ),
                           ),

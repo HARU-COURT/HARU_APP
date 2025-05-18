@@ -4,7 +4,14 @@ import 'package:harucourt/app/config/app_color.dart';
 import 'package:harucourt/app/config/app_text_styles.dart';
 
 class CategoryDropdown extends StatefulWidget {
-  const CategoryDropdown({super.key});
+  final Function(String)? onCategorySelected;
+  final String? initialValue;
+
+  const CategoryDropdown({
+    super.key,
+    this.onCategorySelected,
+    this.initialValue,
+  });
 
   @override
   State<CategoryDropdown> createState() => _CategoryDropdownState();
@@ -20,7 +27,6 @@ class _CategoryDropdownState extends State<CategoryDropdown> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(12),
@@ -30,60 +36,73 @@ class _CategoryDropdownState extends State<CategoryDropdown> {
         children: [
           GestureDetector(
             onTap: () {
-              if (!context.mounted) return;
+              WidgetsBinding.instance.addPostFrameCallback((_) {
+                if (!mounted) return;
 
-              final RenderBox box =
-                  _containerKey.currentContext!.findRenderObject() as RenderBox;
-              final RenderBox overlay =
-                  Overlay.of(context).context.findRenderObject() as RenderBox;
+                final contextRef = _containerKey.currentContext;
+                if (contextRef == null) return;
 
-              final Offset position = box.localToGlobal(Offset.zero);
-              final Size size = box.size;
-              final Size screenSize = overlay.size;
+                final renderObject = contextRef.findRenderObject();
+                if (renderObject is! RenderBox || !renderObject.attached)
+                  return;
 
-              final double right =
-                  screenSize.width - (position.dx + size.width);
+                final RenderBox box = renderObject;
+                final RenderBox overlay =
+                    Overlay.of(context).context.findRenderObject() as RenderBox;
 
-              setState(() => isOpen = true);
+                final Offset position = box.localToGlobal(Offset.zero);
+                final Size size = box.size;
+                final Size screenSize = overlay.size;
 
-              showMenu<String>(
-                context: context,
-                position: RelativeRect.fromLTRB(
-                  position.dx,
-                  position.dy + size.height + 4,
-                  right,
-                  0.0,
-                ),
-                elevation: 0,
-                color: Colors.white,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                  side: BorderSide(color: AppColor.gray200, width: 1),
-                ),
-                constraints: BoxConstraints.tightFor(width: size.width),
-                items:
-                    options.map((item) {
-                      return PopupMenuItem<String>(
-                        value: item,
-                        padding: EdgeInsets.zero,
-                        child: Container(
-                          height: 48,
-                          padding: const EdgeInsets.symmetric(horizontal: 20),
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                            item,
-                            style: AppTextStyles.body3.copyWith(
-                              color: AppColor.black,
+                final double right =
+                    screenSize.width - (position.dx + size.width);
+
+                if (!mounted) return;
+
+                setState(() => isOpen = true);
+
+                showMenu<String>(
+                  context: context,
+                  position: RelativeRect.fromLTRB(
+                    position.dx,
+                    position.dy + size.height + 4,
+                    right,
+                    0.0,
+                  ),
+                  elevation: 0, // ✅ 그림자 제거
+                  color: Colors.white, // ✅ 배경 흰색
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    side: BorderSide(color: AppColor.gray200, width: 1),
+                  ),
+                  constraints: BoxConstraints.tightFor(width: size.width),
+                  items:
+                      options.map((item) {
+                        return PopupMenuItem<String>(
+                          value: item,
+                          padding: EdgeInsets.zero,
+                          child: Container(
+                            height: 48,
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              item,
+                              style: AppTextStyles.body3.copyWith(
+                                color: AppColor.black,
+                              ),
                             ),
                           ),
-                        ),
-                      );
-                    }).toList(),
-              ).then((value) {
-                if (!mounted) return;
-                setState(() {
-                  if (value != null) selectedValue = value;
-                  isOpen = false;
+                        );
+                      }).toList(),
+                ).then((value) {
+                  if (!mounted) return;
+                  setState(() {
+                    if (value != null) {
+                      selectedValue = value;
+                      widget.onCategorySelected?.call(value);
+                    }
+                    isOpen = false;
+                  });
                 });
               });
             },

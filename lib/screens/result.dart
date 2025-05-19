@@ -4,8 +4,8 @@ import 'package:harucourt/app/config/app_text_styles.dart';
 import 'package:harucourt/components/back_header.dart';
 import 'package:harucourt/components/move_button.dart';
 
-class ReseultPage extends StatelessWidget {
-  const ReseultPage({super.key});
+class ResultPage extends StatelessWidget {
+  const ResultPage({super.key});
 
   @override
   Widget build(BuildContext context) {

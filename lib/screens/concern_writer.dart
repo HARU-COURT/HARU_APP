@@ -36,7 +36,7 @@ class _ConcernWriterPageState extends State<ConcernWriterPage> {
                     SizedBox(height: MediaQuery.of(context).size.height * 0.01),
                     InputContent(),
                     SizedBox(height: MediaQuery.of(context).size.height * 0.2),
-                    NextButton(),
+                    NextButton(text: "다음"),
                   ],
                 ),
               ),

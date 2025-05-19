@@ -10,9 +10,10 @@ class MoveButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {},
-      child: IntrinsicWidth(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 60),
         child: Container(
-          padding: EdgeInsets.symmetric(vertical: 16, horizontal: 40),
+          padding: EdgeInsets.symmetric(vertical: 12),
           decoration: BoxDecoration(
             color: AppColor.primary1,
             borderRadius: BorderRadius.circular(8),

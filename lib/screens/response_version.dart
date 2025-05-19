@@ -3,7 +3,7 @@ import 'package:harucourt/app/config/app_color.dart';
 import 'package:harucourt/app/config/app_text_styles.dart';
 import 'package:harucourt/components/back_header.dart';
 import 'package:harucourt/components/next_button.dart';
-import 'package:harucourt/components/mode.button.dart';
+import 'package:harucourt/components/mode_button.dart';
 
 class ResponseVersionPage extends StatefulWidget {
   const ResponseVersionPage({super.key});

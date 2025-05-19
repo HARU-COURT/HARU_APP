@@ -3,7 +3,8 @@ import 'package:harucourt/app/config/app_color.dart';
 import 'package:harucourt/app/config/app_text_styles.dart';
 
 class InputContent extends StatelessWidget {
-  const InputContent({super.key});
+  final TextEditingController? controller;
+  const InputContent({this.controller, super.key});
 
   @override
   Widget build(BuildContext context) {

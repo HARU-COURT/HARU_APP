@@ -3,7 +3,7 @@ import 'package:harucourt/app/config/app_color.dart';
 import 'package:harucourt/components/back_header.dart';
 import 'package:harucourt/components/next_button.dart';
 import 'package:harucourt/widgets/categorydropdown.dart';
-import 'package:harucourt/widgets/inputcotent.dart';
+import 'package:harucourt/widgets/inputcontent.dart';
 import 'package:harucourt/widgets/inputtitle.dart';
 
 class ConcernWriterPage extends StatefulWidget {

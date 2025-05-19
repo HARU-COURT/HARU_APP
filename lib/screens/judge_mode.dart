@@ -5,29 +5,24 @@ import 'package:harucourt/components/back_header.dart';
 import 'package:harucourt/components/next_button.dart';
 import 'package:harucourt/components/mode.button.dart';
 
-class ResponseVersionPage extends StatefulWidget {
-  const ResponseVersionPage({super.key});
+class JudgeModePage extends StatefulWidget {
+  const JudgeModePage({super.key});
 
   @override
-  State<ResponseVersionPage> createState() => _ResponseVersionPageState();
+  State<JudgeModePage> createState() => _JudgeModePageState();
 }
 
-class _ResponseVersionPageState extends State<ResponseVersionPage> {
+class _JudgeModePageState extends State<JudgeModePage> {
   final List<ResponseItem> items = [
     ResponseItem(
-      imagePath: 'assets/images/Fact.png',
-      title: '팩트체크 모드',
-      detail: '논리 ON, 감정 OFF',
+      imagePath: 'assets/images/Ai.png',
+      title: 'AI',
+      detail: '나는 결정장애라서 mo대..',
     ),
     ResponseItem(
-      imagePath: 'assets/images/Fun.png',
-      title: '재미 모드',
-      detail: '그냥 즐기시오',
-    ),
-    ResponseItem(
-      imagePath: 'assets/images/Emotion.png',
-      title: '위로 모드',
-      detail: '울디마',
+      imagePath: 'assets/images/Me.png',
+      title: '나',
+      detail: '판결은 내가 한다.',
     ),
   ];
 
@@ -49,7 +44,7 @@ class _ResponseVersionPageState extends State<ResponseVersionPage> {
                 child: ListView(
                   children: [
                     Text(
-                      "원하는 응답버전을",
+                      "원하는 재판관을",
                       style: AppTextStyles.headline.copyWith(
                         color: AppColor.black,
                       ),

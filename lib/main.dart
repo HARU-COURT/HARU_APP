@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:harucourt/screens/concernwriter.dart';
 import 'package:harucourt/screens/manual.dart';
 import 'package:harucourt/screens/onboarding.dart';
 
@@ -16,9 +17,10 @@ class MainApp extends StatelessWidget {
       getPages: [
         GetPage(name: '/', page: () => OnboardingPage()),
         GetPage(name: '/Manual', page: () => ManualPage()),
+        GetPage(name: '/ConcernWriter', page: () => ConcernWriterPage()),
       ],
       // 실행 시 내가 원하는 페이지로 이동
-      initialRoute: '/Manual',
+      initialRoute: '/ConcernWriter',
     );
   }
 }

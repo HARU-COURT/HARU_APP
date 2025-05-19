@@ -3,7 +3,8 @@ import 'package:harucourt/app/config/app_color.dart';
 import 'package:harucourt/app/config/app_text_styles.dart';
 
 class NextButton extends StatelessWidget {
-  const NextButton({super.key});
+  final String text;
+  const NextButton({required this.text, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,7 @@ class NextButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(8),
         ),
         child: Text(
-          "다음",
+          text,
           style: AppTextStyles.btn2.copyWith(color: AppColor.black),
         ),
       ),

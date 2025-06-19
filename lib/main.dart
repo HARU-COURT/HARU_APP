@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:harucourt/screens/concern_writer.dart';
 import 'package:harucourt/screens/judge_mode.dart';
 import 'package:harucourt/screens/manual.dart';
+import 'package:harucourt/screens/mypage.dart';
 import 'package:harucourt/screens/onboarding.dart';
 import 'package:harucourt/screens/result.dart';
 import 'package:harucourt/screens/response_version.dart';
@@ -24,9 +25,10 @@ class MainApp extends StatelessWidget {
         GetPage(name: '/ResponseVersion', page: () => ResponseVersionPage()),
         GetPage(name: '/JudgeMode', page: () => JudgeModePage()),
         GetPage(name: '/Result', page: () => ResultPage()),
+        GetPage(name: '/Mypage', page: () => Mypage(name: "송윤서")),
       ],
       // 실행 시 내가 원하는 페이지로 이동
-      initialRoute: '/Result',
+      initialRoute: '/Mypage',
     );
   }
 }

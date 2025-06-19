@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:harucourt/app/config/app_color.dart';
 import 'package:harucourt/app/config/app_text_styles.dart';
-import 'package:harucourt/components/back_header.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:harucourt/components/bottom_tab_bar.dart';
 import 'package:harucourt/components/text_header.dart';
@@ -9,6 +9,41 @@ import 'package:harucourt/components/text_header.dart';
 class Mypage extends StatelessWidget {
   final String name;
   const Mypage({required this.name, super.key});
+
+  void _launchFaq() async {
+    final Uri url = Uri.parse(
+      "https://polished-ballcap-a54.notion.site/1d76ec6e948b8098af3adce11dbcef56?source=copy_link",
+    );
+    if (await canLaunchUrl(url)) await launchUrl(url);
+  }
+
+  void _launchTerms() async {
+    final Uri url = Uri.parse(
+      "https://polished-ballcap-a54.notion.site/1d76ec6e948b8078b7a3d8c8a5a5f25d?source=copy_link",
+    );
+    if (await canLaunchUrl(url)) await launchUrl(url);
+  }
+
+  Widget _linkRow(String text, VoidCallback onTap) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.symmetric(vertical: 12),
+        child: Row(
+          children: [
+            Expanded(
+              child: Text(
+                text,
+                style: AppTextStyles.body2.copyWith(color: AppColor.black),
+              ),
+            ),
+            SvgPicture.asset('assets/icons/Go.svg'),
+          ],
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +67,6 @@ class Mypage extends StatelessWidget {
                           height: 50,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
-                            // color: AppColor.gray200,
                             image: DecorationImage(
                               image: AssetImage("assets/images/profile.png"),
                               fit: BoxFit.cover,
@@ -43,7 +77,7 @@ class Mypage extends StatelessWidget {
                           width: MediaQuery.of(context).size.width * 0.05,
                         ),
                         Text(
-                          "송윤서",
+                          name,
                           style: AppTextStyles.headline.copyWith(
                             color: AppColor.black,
                           ),
@@ -199,70 +233,13 @@ class Mypage extends StatelessWidget {
                         SizedBox(
                           height: MediaQuery.of(context).size.height * 0.01,
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              "이용가이드",
-                              style: AppTextStyles.body2.copyWith(
-                                color: AppColor.black,
-                              ),
-                            ),
-                            SvgPicture.asset('assets/icons/Go.svg'),
-                          ],
-                        ),
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.015,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              "자주 묻는 질문",
-                              style: AppTextStyles.body2.copyWith(
-                                color: AppColor.black,
-                              ),
-                            ),
-                            SvgPicture.asset('assets/icons/Go.svg'),
-                          ],
-                        ),
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.015,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              "이용약관",
-                              style: AppTextStyles.body2.copyWith(
-                                color: AppColor.black,
-                              ),
-                            ),
-                            SvgPicture.asset('assets/icons/Go.svg'),
-                          ],
-                        ),
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.015,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              "개인정보처리방침",
-                              style: AppTextStyles.body2.copyWith(
-                                color: AppColor.black,
-                              ),
-                            ),
-                            SvgPicture.asset('assets/icons/Go.svg'),
-                          ],
-                        ),
+                        _linkRow("이용가이드", _launchFaq),
+                        _linkRow("자주 묻는 질문", _launchFaq),
+                        _linkRow("이용약관", _launchTerms),
+                        _linkRow("개인정보처리방침", _launchTerms),
                       ],
                     ),
-                    Divider(
-                      thickness: 1,
-                      color: AppColor.gray100, // 또는 AppColor.gray100
-                      height: 50,
-                    ),
+                    Divider(thickness: 1, color: AppColor.gray100, height: 50),
                     Column(
                       children: [
                         Text(
@@ -274,29 +251,45 @@ class Mypage extends StatelessWidget {
                         SizedBox(
                           height: MediaQuery.of(context).size.height * 0.01,
                         ),
-                        Container(
-                          padding: EdgeInsets.symmetric(
-                            vertical: 13,
-                            horizontal: 16,
-                          ),
-                          decoration: BoxDecoration(
-                            color: Color(0xffFEE500),
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              SvgPicture.asset('assets/icons/Kakao.svg'),
-                              Text(
-                                "하루법정 카카오톡 채널 문의하기",
-                                style: AppTextStyles.btn3.copyWith(
-                                  color: AppColor.black,
+                        GestureDetector(
+                          onTap: () async {
+                            final Uri url = Uri.parse(
+                              "http://pf.kakao.com/_xcIWwn",
+                            );
+                            if (await canLaunchUrl(url)) {
+                              await launchUrl(
+                                url,
+                                mode: LaunchMode.externalApplication,
+                              );
+                            } else {
+                              throw '카카오톡 채널을 열 수 없습니다';
+                            }
+                          },
+                          child: Container(
+                            padding: EdgeInsets.symmetric(
+                              vertical: 13,
+                              horizontal: 16,
+                            ),
+                            decoration: BoxDecoration(
+                              color: Color(0xffFEE500),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                SvgPicture.asset('assets/icons/Kakao.svg'),
+                                Expanded(
+                                  child: Text(
+                                    "하루법정 카카오톡 채널 문의하기",
+                                    style: AppTextStyles.btn3.copyWith(
+                                      color: AppColor.black,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  ),
                                 ),
-                                textAlign: TextAlign.center,
-                              ),
-                              SizedBox(),
-                            ],
+                                SizedBox(width: 24),
+                              ],
+                            ),
                           ),
                         ),
                       ],

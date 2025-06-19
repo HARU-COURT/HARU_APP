@@ -4,6 +4,7 @@ import 'package:harucourt/app/config/app_text_styles.dart';
 import 'package:harucourt/components/back_header.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:harucourt/components/bottom_tab_bar.dart';
+import 'package:harucourt/components/text_header.dart';
 
 class Mypage extends StatelessWidget {
   final String name;
@@ -16,7 +17,7 @@ class Mypage extends StatelessWidget {
         backgroundColor: AppColor.white,
         body: Column(
           children: [
-            BackHeader(),
+            TextHeader(title: "내 정보"),
             SizedBox(height: MediaQuery.of(context).size.height * 0.03),
             Expanded(
               child: Padding(
